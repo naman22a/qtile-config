@@ -126,7 +126,7 @@ colors = {
 layouts = [
     layout.MonadTall(
         border_focus=colors['red'],
-        margin=7,
+        margin=10,
     ),
     layout.Max(),
     # layout.Columns(
@@ -151,12 +151,11 @@ widget_defaults = dict(
     fontsize=16,
     padding=10,
 )
-extension_defaults = widget_defaults.copy()
 
+extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper='~/.config/qtile/bg.jpg',
         top=bar.Bar(
             [
                 widget.GroupBox(

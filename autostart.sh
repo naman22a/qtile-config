@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# picom &
+picom &
 volumeicon &
-
+nitrogen --restore
 
