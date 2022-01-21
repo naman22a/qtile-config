@@ -94,21 +94,36 @@ keys = [
 
     Key([mod, "shift"], "Return", lazy.spawn('dmenu_run'),
         desc="Spawn a command using a prompt widget"),
+
+    Key([mod], "Right", lazy.screen.next_group()),
+    Key([mod], "Left", lazy.screen.prev_group()),
 ]
 
-groups = [Group(i) for i in "12345"]
+groups = []
 
-for i in groups:
+group_labels = ['爵', '', '', '', '', 'ﱘ']
+group_names = [str(i) for i in range(1, len(group_labels)+1)]
+
+for i in range(len(group_names)):
+
+    group = Group(
+        name=group_names[i],
+        layout='MonadTall',
+        label=group_labels[i]
+    )
+
+    groups.append(group)
+
     keys.extend([
-        Key([mod], i.name,
-            lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.name)
+        Key([mod], group.name,
+            lazy.group[group.name].toscreen(),
+            desc="Switch to group {}".format(group.name),
             ),
-
-        Key([mod, "shift"], i.name,
-            lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)
-            ),
+        Key([mod, "shift"], group.name,
+            lazy.window.togroup(group.name),
+            desc="Switch to & move focused window to group {}".format(
+                group.name),
+            )
     ])
 
 colors = {
@@ -149,7 +164,7 @@ screens = [
                     inactive=colors['white'],
                     highlight_method="line",
                     this_current_screen_border=colors['green'],
-                    padding=3,
+                    padding=8,
                 ),
                 widget.Prompt(),
                 widget.Spacer(length=bar.STRETCH),
@@ -221,6 +236,8 @@ reconfigure_screens = True
 auto_minimize = True
 
 # startup apps
+
+
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
