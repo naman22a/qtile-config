@@ -101,7 +101,7 @@ keys = [
 
 groups = []
 
-group_labels = ['爵', '', '', '', '', 'ﱘ']
+group_labels = ['爵', '', '', '', '', '']
 group_names = [str(i) for i in range(1, len(group_labels)+1)]
 
 for i in range(len(group_names)):
@@ -160,11 +160,12 @@ screens = [
             [
                 widget.GroupBox(
                     rounded=False,
-                    active=colors['yellow'],
+                    active=colors['aqua'],
                     inactive=colors['white'],
                     highlight_method="line",
                     this_current_screen_border=colors['green'],
                     padding=8,
+                    fontsize=18,
                 ),
                 widget.Prompt(),
                 widget.Spacer(length=bar.STRETCH),
